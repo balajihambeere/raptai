@@ -1,4 +1,4 @@
-from core.security import get_password_hash
+from src.core.security import get_password_hash
 from src.repositories.auth_repository import AuthRepository
 from src.schemas.user import UserCreate
 

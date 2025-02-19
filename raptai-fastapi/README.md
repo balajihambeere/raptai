@@ -147,6 +147,6 @@ A few important notes about these configurations:
 
 2. Place these files in your project root
 
-3. Run docker-compose up --build
+3. Run `docker-compose up --build`
 
 This will build the images and start the containers. Your application should be accessible at http://localhost:8000.

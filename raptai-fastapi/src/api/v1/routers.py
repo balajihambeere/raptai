@@ -1,5 +1,5 @@
-from api.v1.endpoints import auth
-from api.v1.endpoints import users
+from src.api.v1.endpoints import auth
+from src.api.v1.endpoints import users
 from fastapi import APIRouter
 
 import sys
