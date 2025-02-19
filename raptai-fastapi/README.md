@@ -21,6 +21,15 @@ cd app
 uvicorn main:app --host 0.0.0.0 --port 80
  
 ```
+## Add to .env
+```bash
+PROJECT_NAME=<> # Project name
+DATABASE_URL=<> # Database URL
+DB_FORCE_ROLL_BACK=False
+SECRET_KEY = <> # Secret key
+ALGORITHM = HS256
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+```
 
 ## Project Architecture Architecture
 
