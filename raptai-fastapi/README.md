@@ -105,3 +105,48 @@ raptai-fastapi/
 ├── docker-compose.yml           # Docker Compose configuration
 └── README.md                    # Project documentation
 ```
+
+
+A few important notes about these configurations:
+
+### The Dockerfile:
+
+- Uses Python 3.9 slim image to keep the container size small
+
+- Copies requirements first to leverage Docker layer caching
+
+- Sets environment variables
+
+- Exposes port 8000 (adjust if your application uses a different port)
+
+### The docker-compose.yml:
+
+- Defines two services: web (your application) and db (PostgreSQL)
+
+- Sets up environment variables for both services
+
+- Creates a persistent volume for PostgreSQL data
+
+- Sets up proper networking between containers
+
+- Maps ports to host machine
+
+- Uses depends_on to ensure database starts before the web application
+
+### Security considerations:
+
+- In a production environment, you should not include sensitive information like SECRET_KEY in the Dockerfile or docker-compose.yml
+
+- Consider using Docker secrets or environment files for sensitive information
+
+- The PostgreSQL password should be more secure in production
+
+### To run the application:
+
+1. Make sure Docker and Docker Compose are installed
+
+2. Place these files in your project root
+
+3. Run docker-compose up --build
+
+This will build the images and start the containers. Your application should be accessible at http://localhost:8000.
