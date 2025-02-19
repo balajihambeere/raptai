@@ -1,5 +1,7 @@
 # raptai-fastapi
 
+![fastapi-book-cover](https://github.com/user-attachments/assets/8e9a87ae-e953-4cae-a640-e128de6ccfae)
+
 ## Using poetry
 ```bash
  poetry install
