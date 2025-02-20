@@ -5,7 +5,7 @@ import requests
 import json
 import os
 
-API_URL = os.getenv('API_URL', 'http://localhost:8100')
+API_URL = os.getenv('API_URL', 'http://localhost:8101')
 
 
 def upload_to_api(file, metadata):

@@ -1,4 +1,14 @@
 ### To run the application:
+
+## Install dependencies
+```bash
+  pip install -r requirements.txt
+```
+## Run application
+```bash
+    uvicorn src.main:app --reload --port 8101 
+```
+
 1. Build the container:
 ```bash
     docker-compose build
@@ -11,3 +21,4 @@
 ```bash
     docker-compose down
 ```
+

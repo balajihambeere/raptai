@@ -3,7 +3,7 @@ import requests
 import uuid
 import os
 
-API_URL = os.getenv('API_URL', 'http://localhost:8100')
+API_URL = os.getenv('API_URL', 'http://localhost:8101')
 
 # Initialize session state variables
 if 'conversation_id' not in st.session_state:
