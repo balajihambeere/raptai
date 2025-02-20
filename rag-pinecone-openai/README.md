@@ -1,4 +1,4 @@
-# rapt-ai
+# rag-pinecone-openai
 
 ## 🚀 Introduction
 
