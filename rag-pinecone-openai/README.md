@@ -12,6 +12,9 @@ Simply upload a PDF document, and rapt-ai will analyze its content, allowing you
 - Chat with documents
 - OCR Implementation
 
+![RAG_app](https://github.com/user-attachments/assets/7206a7a4-6f25-4073-92ff-26173a9bacc3)
+
+
 ## Check Video on below link
 https://www.linkedin.com/feed/update/urn:li:activity:7298272269653442560
 
