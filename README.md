@@ -1,4 +1,4 @@
-
+![healine](https://github.com/user-attachments/assets/ba859431-7dfe-4739-a39c-4b74e27c555b)
 [Linkedin](https://www.linkedin.com/company/raptai/?viewAsMember=true) | [Whatsup](https://whatsapp.com/channel/0029Vb2e6DI96H4bDWVzsV2O) 
 
 # raptAI
