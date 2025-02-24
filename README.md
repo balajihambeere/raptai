@@ -1,3 +1,6 @@
+
+[Linkedin](https://www.linkedin.com/company/raptai/?viewAsMember=true) | [Whatsup](https://whatsapp.com/channel/0029Vb2e6DI96H4bDWVzsV2O) 
+
 # raptAI
 
 raptAI is a curated collection of repositories featuring projects in various domains of technology, including:
