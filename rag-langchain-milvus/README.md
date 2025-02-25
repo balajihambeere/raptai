@@ -21,3 +21,6 @@
 ```bash
     python main.py
 ```
+
+## RAG Workflow Diagram
+![RAG_workflow (1)](https://github.com/user-attachments/assets/84eb171d-4c0b-47b7-8412-f4c483d43ca6)
