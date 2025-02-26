@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-nextjs-ts",
+  "name": "fast-next-app-frontend",
   "version": "5.0.0",
   "private": true,
   "scripts": {
@@ -13,12 +13,14 @@
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@mui/icons-material": "next",
+    "@mui/icons-material": "^6.4.5",
     "@mui/material": "next",
     "@mui/material-nextjs": "next",
+    "add": "^2.0.6",
     "next": "^15.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@types/node": "latest",
