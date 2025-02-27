@@ -1,18 +1,19 @@
-"use client";
+"use client"
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MuiCard from '@mui/material/Card';
-import Checkbox from '@mui/material/Checkbox';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import ForgotPassword from './ForgotPassword';
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
+import { useRegisterMutation } from '../api';
+import { LoginRequest, RegisterRequest } from '../types';
+import { useAppDispatch } from '@/store/hooks';
+import { signIn } from "next-auth/react";
 
 
 const Card = styled(MuiCard)(({ theme }: { theme: any }) => ({
@@ -34,11 +35,11 @@ const Card = styled(MuiCard)(({ theme }: { theme: any }) => ({
 }));
 
 export default function SignInCard() {
+    const dispatch = useAppDispatch();
 
     const pathname = usePathname()
     // check path name contains signup
     const isSignup = pathname.includes('signup')
-
     const [emailError, setEmailError] = React.useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
@@ -56,16 +57,54 @@ export default function SignInCard() {
         setOpen(false);
     };
 
+    const [register, { isLoading, error, data }] = useRegisterMutation();
+
+    React.useEffect(() => {
+        if (data) redirect('/')
+    }, [isLoading, data, error, dispatch]);
+
+
+    const handleLogin = async (data: FormData) => {
+        const credentials = {
+            username: data.get('email'),
+            password: data.get('password'),
+        } as LoginRequest
+
+        const res = await signIn("credentials", {
+            ...credentials,
+            redirect: false,
+        });
+
+        if (res?.error) {
+            alert("Login failed");
+        } else {
+            redirect('/dashboard');
+        }
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        if (emailError || passwordError) {
+        event.preventDefault();
+
+        if (emailError || passwordError || nameError) {
             event.preventDefault();
             return;
         }
         const data = new FormData(event.currentTarget);
-        console.log({
+
+        if (!isSignup) {
+            handleLogin(data)
+            return;
+        }
+
+        const body = {
             email: data.get('email'),
             password: data.get('password'),
-        });
+            fullname: data.get('name'),
+
+        } as RegisterRequest
+
+        register(body)
+
     };
 
     const validateInputs = () => {
@@ -93,7 +132,7 @@ export default function SignInCard() {
             setPasswordErrorMessage('');
         }
 
-        if ((!name.value || name.value.length < 1) && isSignup) {
+        if ((!name?.value || name?.value.length < 1) && isSignup) {
             setNameError(true);
             setNameErrorMessage('Name is required.');
             isValid = false;
@@ -129,7 +168,7 @@ export default function SignInCard() {
                             required
                             fullWidth
                             id="name"
-                            placeholder="Jon Snow"
+                            placeholder="Steve Jobs"
                             error={nameError}
                             helperText={nameErrorMessage}
                             color={nameError ? 'error' : 'primary'}
@@ -156,15 +195,6 @@ export default function SignInCard() {
                 <FormControl>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <FormLabel htmlFor="password">Password</FormLabel>
-                        <Link
-                            component="button"
-                            type="button"
-                            onClick={handleClickOpen}
-                            variant="body2"
-                            sx={{ alignSelf: 'baseline' }}
-                        >
-                            Forgot your password?
-                        </Link>
                     </Box>
                     <TextField
                         error={passwordError}
@@ -181,15 +211,7 @@ export default function SignInCard() {
                         color={passwordError ? 'error' : 'primary'}
                     />
                 </FormControl>
-                {isSignup ? (<FormControlLabel
-                    control={<Checkbox value="updates" color="primary" />}
-                    label="I want to receive updates via email."
-                />) : (<FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                />)}
 
-                <ForgotPassword open={open} handleClose={handleClose} />
                 <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
                     {isSignup ? 'Sign up' : 'Sign in'}
                 </Button>
@@ -206,25 +228,6 @@ export default function SignInCard() {
                     </span>
                 </Typography>
             </Box>
-            {/* <Divider>or</Divider>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Button
-                    fullWidth
-                    variant="outlined"
-                    onClick={() => alert('Sign in with Google')}
-                    startIcon={<GoogleIcon />}
-                >
-                    Sign in with Google
-                </Button>
-                <Button
-                    fullWidth
-                    variant="outlined"
-                    onClick={() => alert('Sign in with Facebook')}
-                    startIcon={<FacebookIcon />}
-                >
-                    Sign in with Facebook
-                </Button>
-            </Box> */}
         </Card>
     );
 }

@@ -1,6 +1,6 @@
-from src.core.security import verify_password
-from src.models.user import User
-from src.dependencies.database import database
+from core.security import verify_password
+from models.user import User
+from dependencies.database import database
 
 
 class AuthRepository:

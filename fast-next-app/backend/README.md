@@ -1,6 +1,4 @@
-# raptai-fastapi
-
-![fastapi-book-cover](https://github.com/user-attachments/assets/8e9a87ae-e953-4cae-a640-e128de6ccfae)
+# fast-next-app
 
 ## Using poetry
 ```bash
@@ -8,7 +6,7 @@
 ```
 ## Using virtual environment
 ```bash
- pip install -r requirements.tsx
+ pip install -r requirements.txt
 ```
 
 ##
@@ -18,7 +16,9 @@ cd src
 cd app
 
 # run following command
-uvicorn main:app --host 0.0.0.0 --port 80
+```bash
+    uvicorn main:app --host localhost --port 8200 --reload
+```
  
 ```
 ## Add to .env
@@ -107,6 +107,16 @@ raptai-fastapi/
 ```
 
 
+```bash
+docker run \
+    --name fast-next-db \
+    -e POSTGRES_USER=raptaiuser \
+    -e POSTGRES_PASSWORD=mypassword \
+    -e POSTGRES_DB=raptaidb \
+    -p 6024:5432 \
+    -d postgres
+```
+
 A few important notes about these configurations:
 
 ### The Dockerfile:
@@ -150,3 +160,8 @@ A few important notes about these configurations:
 3. Run `docker-compose up --build`
 
 This will build the images and start the containers. Your application should be accessible at http://localhost:8000.
+
+
+
+[tool.poetry]
+packages = [{ include = "app", from = "src" }]

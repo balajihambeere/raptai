@@ -2,11 +2,11 @@ from pydantic import BaseModel, EmailStr
 
 
 class UserBase(BaseModel):
-    name: str
     email: EmailStr
+    fullname: str
+    password: str
 
-
-class UserCreate(UserBase):
+class UserCreateRequest(UserBase):
     pass
 
 

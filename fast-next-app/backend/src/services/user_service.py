@@ -1,5 +1,5 @@
-from src.repositories.user_repository import UserRepository
-from src.schemas.user import UserCreate, UserUpdate
+from repositories.user_repository import UserRepository
+from schemas.user import UserCreateRequest, UserUpdate
 
 
 class UserService:
@@ -12,7 +12,7 @@ class UserService:
     async def get_users(self, skip: int = 0, limit: int = 100):
         return await self.user_repository.get_users(skip, limit)
 
-    async def create_user(self, user: UserCreate):
+    async def create_user(self, user: UserCreateRequest):
         user_data = user.model_dump()
         return await self.user_repository.create_user(user_data)
 

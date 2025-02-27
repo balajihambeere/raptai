@@ -1,4 +1,4 @@
-from src.dependencies.database import metadata
+from dependencies.database import metadata
 import sqlalchemy
 
 User = sqlalchemy.Table(
@@ -7,4 +7,5 @@ User = sqlalchemy.Table(
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
     sqlalchemy.Column("email", sqlalchemy.String, unique=True),
     sqlalchemy.Column("password", sqlalchemy.String),
+    sqlalchemy.Column("fullname", sqlalchemy.String)
 )

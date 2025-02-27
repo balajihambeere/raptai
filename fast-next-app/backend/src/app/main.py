@@ -1,11 +1,9 @@
-from src.dependencies.database import connect, disconnect, create_tables
-from src.core.config import settings
-from src.api.v1.routers import router as api_router
+from dependencies.database import connect, disconnect, create_tables
+from core.config import settings
+from api.v1.routers import router as api_router
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from fastapi.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager
@@ -17,6 +15,21 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title=settings.PROJECT_NAME, lifespan=lifespan)
 
+origins = [
+    "http://localhost",
+    "https://localhost",
+    "http://localhost:3000",
+    "https://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(api_router, prefix="/api/v1")
 
 
@@ -27,4 +40,4 @@ def read_root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8100)
+    uvicorn.run(app, host="localhost", port=8200)
